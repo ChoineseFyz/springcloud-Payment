@@ -1,0 +1,20 @@
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-provider-hystrix-order
+eureka:
+  client:
+    register-with-eureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+logging:
+  level:
+    com.zg.springcloud.service.PaymentService: debug
+ribbon:
+  ReadTimeout: 5000
+  connectTimeout: 5000
+feign:
+  hystrix:
+    enabled: true

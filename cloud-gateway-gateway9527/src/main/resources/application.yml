@@ -1,0 +1,48 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #这个的意思就是开启从之策中心动态创建路由的功能  里用微服务名进行路由
+      routes:
+        - id: payment_routh #payment_route 路由器的id 哟没有固定的规则但是要求唯一建议配合服务名称
+          #uri: http://localhost:8001  #这里是匹配后提供服务的路由地址
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/get/**   #这里是断言 路径匹配的进行路由
+         #   - After=2020-07-22T10:46:24.787+08:00[Asia/Shanghai]   #After就是设置此时间之后才能执行   美国时间将用Java  ZonedDateTime.now();来获取时间
+
+        - id: payment_routh2 #payment_route2 路由器的id 哟没有固定的规则但是要求唯一建议配合服务名称
+          #uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/lb/**
+            #- Cookie=username,fyz #cookie中带游着两个直匹配后才能访问
+eureka:
+  instance:
+    hostname: cloud-gateway-service
+  client:
+    register-with-eureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+  # After
+  # Before
+  # Between
+  # Cookie
+  #（X-Request-Id,\d+） 要求 请求头药有X-Request-Id的属性并值为整数的正则表达式
+  #两个参数：一格式属性名称和一个是正则表达式，这个属性值和正则表的是匹配则执行
+  # Header
+  # Host
+  # Method
+  # Path
+  # Query
+  # ReadBodyPredicateFactory
+  # RemoteAddr
+  # Weight
+  # CloudFoundryRouteService
