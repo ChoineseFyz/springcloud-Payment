@@ -8,6 +8,7 @@
     <artifactId>newcloud2020</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
+
         <module>cloud-porvider-payment8001</module>
         <module>cloud-consumer-order80</module>
         <module>cloud-api-commons</module>
@@ -23,6 +24,7 @@
         <module>cloud-consumer-feign-hystrix-order80</module>
         <module>cloud-consumer-hystrix-dashboard9001</module>
         <module>cloud-gateway-gateway9527</module>
+        <module>cloud-config-center-3344</module>
     </modules>
     <packaging>pom</packaging>
 
