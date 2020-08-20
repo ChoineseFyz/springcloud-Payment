@@ -1,14 +1,8 @@
 package com.zg.springcloud.service;
 
-import cn.hutool.core.util.IdUtil;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.stereotype.Service;
-import sun.awt.SunHints;
-
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-
 /** 
  * @author fyz
  * @version 1.0
@@ -46,8 +40,8 @@ public class PaymentService {
         if (id<0){
             throw new RuntimeException("*********参数不能为负数");
         }
-        String serialNumber = IdUtil.simpleUUID();
-        return "线程池 ："+Thread.currentThread().getName()+"调用成功····O(∩_∩)O：流水号："+serialNumber;
+        //String serialNumber = IdUtil.simpleUUID();
+        return "线程池 ："+Thread.currentThread().getName()+"调用成功····O(∩_∩)O：流水号：";
     }
 
     public String paymentCircuitBreaker_fallback(Integer id){
